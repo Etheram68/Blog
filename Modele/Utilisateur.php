@@ -1,46 +1,225 @@
 <?php
 
-require_once 'Framework/Modele.php';
+namespace Blog\Modele;
+
+use Blog\Framework\Modele;
+use Blog\Framework\Session;
 
 /**
  * Modélise un utilisateur du blog
  *
  * @author Baptiste Pesquet
  */
-class Utilisateur extends Modele {
-
+class Utilisateur extends Modele
+{
     /**
      * Vérifie qu'un utilisateur existe dans la BD
-     * 
+     *
      * @param string $login Le login
      * @param string $mdp Le mot de passe
      * @return boolean Vrai si l'utilisateur existe, faux sinon
      */
     public function connecter($login, $mdp)
     {
-        $sql = "select UTIL_ID from T_UTILISATEUR where UTIL_LOGIN=? and UTIL_MDP=?";
-        $utilisateur = $this->executerRequete($sql, array($login, $mdp));
-        return ($utilisateur->rowCount() == 1);
+        $sql = "SELECT UTIL_ID , UTIL_MDP FROM T_UTILISATEUR WHERE UTIL_LOGIN= :utilLogin";
+        $utilisateur = $this->executerRequete($sql, array('utilLogin' => $login));
+
+        if ($utilisateur->rowCount() == 1) {
+            $utilisateur = $utilisateur->fetch();
+            if (password_verify($mdp, $utilisateur["UTIL_MDP"])) {
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } else {
+            return false;
+        };
     }
 
     /**
      * Renvoie un utilisateur existant dans la BD
-     * 
+     *
      * @param string $login Le login
      * @param string $mdp Le mot de passe
      * @return mixed L'utilisateur
-     * @throws Exception Si aucun utilisateur ne correspond aux paramètres
+     * @throws \Exception Si aucun utilisateur ne correspond aux paramètres
      */
-    public function getUtilisateur($login, $mdp)
+    public function getUtilisateur($login)
     {
-        $sql = "select UTIL_ID as idUtilisateur, UTIL_LOGIN as login, UTIL_MDP as mdp 
-            from T_UTILISATEUR where UTIL_LOGIN=? and UTIL_MDP=?";
-        $utilisateur = $this->executerRequete($sql, array($login, $mdp));
+        $sql = "SELECT UTIL_ID AS idUtilisateur, UTIL_LOGIN AS login, UTIL_MDP AS mdp, UTIL_GRADE AS grade ,UTIL_NOM AS nom, UTIL_PRENOM AS prenom, UTIL_PHOTO AS photo, UTIL_DNAISSANCE AS naissance, UTIL_EMAIL AS email, UTIL_ACCES AS acces FROM T_UTILISATEUR WHERE UTIL_LOGIN= :login";
+        $utilisateur = $this->executerRequete($sql, array('login' => $login));
         if ($utilisateur->rowCount() == 1)
-            return $utilisateur->fetch();  // Accès à la première ligne de résultat
+            return $utilisateur->fetch(); // Accès à la première ligne de résultat
         else
-            throw new Exception("Aucun utilisateur ne correspond aux identifiants fournis");
+            throw new \Exception("Aucun utilisateur ne correspond aux identifiants fournis");
     }
 
-}
+    public function getUtilisateurs()
+    {
+        $sql = "SELECT UTIL_ID AS id, UTIL_LOGIN AS login, UTIL_NOM AS nom, UTIL_PRENOM AS prenom, UTIL_DNAISSANCE AS naissance, UTIL_EMAIL AS email, UTIL_GRADE AS grade, UTIL_ACCES AS acces  FROM T_UTILISATEUR";
+        $utilisateurs = $this->executerRequete($sql, array());
+        return $utilisateurs;
+    }
 
+    /**
+     * Modification d'un utilisateur existant - pierre
+     */
+    public function modificationPassword($id, $mdp)
+    {
+
+        $pass_hache = password_hash($mdp, PASSWORD_BCRYPT);
+
+
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_MDP= :mdp WHERE UTIL_ID = :id';
+
+        return $this->executerRequete($sql, array(
+                'id' => $id,
+                'mdp' => $pass_hache
+            ))->rowCount() == 1;
+    }
+
+    /**
+     *
+     * Enregistrement d'un utilisateur
+     * @param string $login Login
+     * @param string $mdp
+     * @param string $nom
+     * @param string $prenom
+     * @param string $dateNaissance
+     * @param string $email
+     * @return bool
+     */
+    public function inscription($login, $mdp, $nom, $prenom, $dateNaissance, $email)
+    {
+        $pass_hache = password_hash($mdp, PASSWORD_BCRYPT);
+        $email_verifie = $email;
+        $sql = 'INSERT INTO T_UTILISATEUR SET UTIL_LOGIN= :login, UTIL_MDP= :mdp, UTIL_NOM= :nom, UTIL_PRENOM= :prenom, UTIL_DNAISSANCE= :dateNaissance, UTIL_EMAIL= :email';
+        return $this->executerRequete($sql, array(
+                'login' => $login,
+                'mdp' => $pass_hache,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'dateNaissance' => $dateNaissance,
+                'email' => $email_verifie
+            ))->rowCount() == 1;
+
+    }
+
+    public function utilisateurModifier($mdp, $nom, $prenom, $dateNaissance, $email)
+    {
+        $pass_hache = password_hash($mdp, PASSWORD_BCRYPT);
+        $email_verifie = $email;
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_MDP= :mdp, UTIL_NOM= :nom, UTIL_PRENOM= :prenom, UTIL_DNAISSANCE= :dateNaissance, UTIL_EMAIL= :email';
+        return $this->executerRequete($sql, array(
+                'mdp' => $pass_hache,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'dateNaissance' => $dateNaissance,
+                'email' => $email_verifie
+            ))->rowCount() == 1;
+
+    }
+
+    public function utilisateurSupprimer($id)
+    {
+        $sql = 'DELETE FROM T_UTILISATEUR WHERE UTIL_ID = :utilId';
+
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+
+    public function existanceUtilisateur($login, $nom, $prenom, $email)
+    {
+        $sql = "SELECT UTIL_LOGIN AS login, UTIL_NOM AS nom, UTIL_PRENOM AS prenom, UTIL_EMAIL AS email FROM T_UTILISATEUR
+ WHERE lower(UTIL_EMAIL) = :email OR LOWER(UTIL_LOGIN) = :login  OR (LOWER(UTIL_NOM) = :nom AND LOWER(UTIL_PRENOM) = :prenom)";
+        $utilisateurs = $this->executerRequete($sql, array(
+            'login' => $login,
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email
+        ));
+        foreach ($utilisateurs as $utilisateur) {
+            if (strtolower($utilisateur['login']) == strtolower($login)) {
+                return $resultat = "Login existant";
+            }
+            if (strtolower($utilisateur['nom']) == strtolower($nom) && strtolower($utilisateur['prenom']) == strtolower($prenom)) {
+                return $resultat = "Nom et prenom déja existant";
+            }
+
+            if (strtolower($utilisateur['email']) == strtolower($email)) {
+                return $resultat = "Email déja existant";
+            }
+
+        }
+        return false;
+    }
+
+    public function existanceEmailUtilisateur($email)
+    {
+        $sql = "SELECT UTIL_EMAIL AS email  FROM T_UTILISATEUR";
+        $utilisateurs = $this->executerRequete($sql, array());
+        foreach ($utilisateurs as $utilisateur) {
+            if (strtolower($utilisateur['email']) == strtolower($email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function utilisateurModerateur($id)
+    {
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_GRADE="Moderateur" WHERE UTIL_ID= :utilId';
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+
+    public function utilisateurAdministrateur($id)
+    {
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_GRADE="Administrateur" WHERE UTIL_ID= :utilId';
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+
+    public function utilisateurDegrade($id)
+    {
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_GRADE="Utilisateur" WHERE UTIL_ID= :utilId';
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+
+    public function utilisateurBannir($id)
+    {
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_ACCES="Banni" WHERE UTIL_ID= :utilId';
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+
+    public function utilisateurDeBannir($id)
+    {
+        $sql = 'UPDATE T_UTILISATEUR SET UTIL_ACCES="Autorise" WHERE UTIL_ID= :utilId';
+        return $this->executerRequete($sql, array(
+                'utilId' => $id,
+            ))->rowCount() == 1;
+    }
+//    /*
+//     *
+//     */
+//    public function verifier_email ($email) {
+//
+//        //Vérication regex si email contient un "@" $1 et un "." $2 et que les trois derniers caractéres sont alphanumérique $3, et i pour ignorer la casse
+//        if (preg_match("#.+(@).+(\.+)\w{2,4}$#", $email)) {
+//            return
+//        } else {
+//
+//        }
+//    }
+//*/
+
+}

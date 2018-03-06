@@ -1,13 +1,29 @@
-<?php $this->titre = "Mon Blog - Connexion" ?>
+<div class="row">
 
-<p>Vous devez être connecté pour accéder à cette zone.</p>
+    <form class="login-box" action="connexion/connecter" method="post" class="form-signin">
+        <?php $this->titre = "Mon Blog - Connexion" ?>
+        <h2>Identifiez-vous</h2></br>
+        <label for="inputEmail" class="sr-only">Login</label>
+        <label><h5>Identifiant :</h5></label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Entrez votre login" name="login" required
+               autofocus><br>
+        <label><h5>Mot de passe :</h5></label>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Entrez votre mot de passe"
+               name="mdp" required></br>
+        <a href="accueil/inscription">S'inscrire sur le site</a></br>
+        </br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">S'identifier</button>
+    </form>
 
-<form action="connexion/connecter" method="post">
-    <input name="login" type="text" placeholder="Entrez votre login" required autofocus>
-    <input name="mdp" type="password" placeholder="Entrez votre mot de passe" required>
-    <button type="submit">Connexion</button>
-</form>
+</div> <!-- /container -->
+<br>
+<div class="row">
 
-<?php if (isset($msgErreur)): ?>
-    <p><?= $msgErreur ?></p>
-<?php endif; ?>
+    <?php if (isset($msgErreur)): ?>
+    <div class="alert alert-danger">
+        <p><strong>Attention !</strong> <?= $msgErreur ?></p>
+    </div>
+    <?php endif; ?>
+
+</div>

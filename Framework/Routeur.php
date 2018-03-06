@@ -1,18 +1,23 @@
 <?php
 
-require_once 'Controleur.php';
-require_once 'Requete.php';
-require_once 'Vue.php';
+namespace Blog\Framework;
 
-/**
+
+/*
  * Classe de routage des requêtes entrantes.
+ * 
  * Inspirée du framework PHP de Nathan Davison
  * (https://github.com/ndavison/Nathan-MVC)
  * 
+ * @version 1.0
  * @author Baptiste Pesquet
  */
+
 class Routeur
 {
+
+
+    private $requete;
 
     /**
      * Méthode principale appelée par le contrôleur frontal
@@ -21,23 +26,22 @@ class Routeur
     public function routerRequete()
     {
         try {
-            // Fusion des paramètres GET et POST de la requête
-            // Permet de gérer uniformément ces deux types de requête HTTP
-            $requete = new Requete(array_merge($_GET, $_POST));
+// Fusion des paramètres GET et POST de la requête
+// Permet de gérer uniformément ces deux types de requête HTTP
+            $this->requete = new Requete(array_merge($_GET, $_POST));
 
-            $controleur = $this->creerControleur($requete);
-            $action = $this->creerAction($requete);
+            $controleur = $this->creerControleur($this->requete);
+            $action = $this->creerAction($this->requete);
 
             $controleur->executerAction($action);
-        }
-        catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->gererErreur($e);
         }
     }
 
     /**
      * Instancie le contrôleur approprié en fonction de la requête reçue
-     * 
+     *
      * @param Requete $requete Requête reçue
      * @return Instance d'un contrôleur
      * @throws Exception Si la création du contrôleur échoue
@@ -55,23 +59,21 @@ class Routeur
         }
         // Création du nom du fichier du contrôleur
         // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
-        $classeControleur = "Controleur" . $controleur;
-        $fichierControleur = "Controleur/" . $classeControleur . ".php";
-        if (file_exists($fichierControleur)) {
+        $classeControleur = "Blog\\Controleur\\Controleur" . $controleur;
+        try {
             // Instanciation du contrôleur adapté à la requête
-            require($fichierControleur);
             $controleur = new $classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
-        }
-        else {
-            throw new Exception("Fichier '$fichierControleur' introuvable");
+        } catch (\Exception $e) {
+            header("HTTP/1.0 404 Not Found");
+            throw new \Exception("Cette page n'existe pas !!!");
         }
     }
 
     /**
      * Détermine l'action à exécuter en fonction de la requête reçue
-     * 
+     *
      * @param Requete $requete Requête reçue
      * @return string Action à exécuter
      */
@@ -86,13 +88,15 @@ class Routeur
 
     /**
      * Gère une erreur d'exécution (exception)
-     * 
+     *
      * @param Exception $exception Exception qui s'est produite
      */
-    private function gererErreur(Exception $exception)
+    private function gererErreur(\Exception $exception)
     {
         $vue = new Vue('erreur');
-        $vue->generer(array('msgErreur' => $exception->getMessage()));
+
+        $donnees = ['msgErreur' => $exception->getMessage(), 'flash' => $this->requete->getSession()->getMessageFlash()];
+        $vue->generer($donnees);
     }
 
 }

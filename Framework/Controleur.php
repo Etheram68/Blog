@@ -1,26 +1,28 @@
 <?php
 
-require_once 'Configuration.php';
-require_once 'Requete.php';
-require_once 'Vue.php';
+namespace Blog\Framework;
+
 
 /**
- * Classe abstraite contrôleur. 
- * Fournit des services communs aux classes contrôleurs dérivées.
- * 
+ * Classe abstraite Controleur
+ * Fournit des services communs aux classes Controleur dérivées
+ *
+ * @version 1.0
  * @author Baptiste Pesquet
  */
 abstract class Controleur
 {
+
+    /**
+     * @var Requete $requete Requête entrante
+     */
+    protected $requete;
     /** Action à réaliser */
     private $action;
 
-    /** Requête entrante */
-    protected $requete;
-
     /**
      * Définit la requête entrante
-     * 
+     *
      * @param Requete $requete Requete entrante
      */
     public function setRequete(Requete $requete)
@@ -31,7 +33,7 @@ abstract class Controleur
     /**
      * Exécute l'action à réaliser.
      * Appelle la méthode portant le même nom que l'action sur l'objet Controleur courant
-     * 
+     *
      * @throws Exception Si l'action n'existe pas dans la classe Controleur courante
      */
     public function executerAction($action)
@@ -39,8 +41,7 @@ abstract class Controleur
         if (method_exists($this, $action)) {
             $this->action = $action;
             $this->{$this->action}();
-        }
-        else {
+        } else {
             $classeControleur = get_class($this);
             throw new Exception("Action '$action' non définie dans la classe $classeControleur");
         }
@@ -54,38 +55,60 @@ abstract class Controleur
 
     /**
      * Génère la vue associée au contrôleur courant
-     * 
+     *
      * @param array $donneesVue Données nécessaires pour la génération de la vue
-     * @param string $action Action associée à la vue (permet à un contrôleur de générer une vue pour une action spécifique)
      */
     protected function genererVue($donneesVue = array(), $action = null)
     {
-        // Utilisation de l'action actuelle par défaut
-        $actionVue = $this->action;
-        if ($action != null) {
-            // Utilisation de l'action passée en paramètre
-            $actionVue = $action;
+        $vue = $this->getVueFromAction($action);
+        $vue->generer(array_merge($donneesVue, ['flash' => $this->requete->getSession()->getMessageFlash()]));
+    }
+
+    /**
+     * @param $action
+     * @return Vue
+     */
+    protected function getVueFromAction($action)
+    {
+        if ($action) {
+            $this->action = $action;
         }
-        // Utilisation du nom du contrôleur actuel
         $classeControleur = get_class($this);
-        $controleurVue = str_replace("Controleur", "", $classeControleur);
+        $controleur = str_replace("Blog\\Controleur\\Controleur", "", $classeControleur);
 
         // Instanciation et génération de la vue
-        $vue = new Vue($actionVue, $controleurVue);
-        $vue->generer($donneesVue);
+        $vue = new Vue($this->action, $controleur);
+        return $vue;
+    }
+
+    protected function genererVueAdmin($donneesVue = array(), $action = null)
+    {
+        $vue = $this->getVueFromAction($action);
+        $vue->genererAdmin(array_merge($donneesVue, ['flash' => $this->requete->getSession()->getMessageFlash()]));
+    }
+
+    protected function setFlash($type, $message)
+    {
+        $this->requete->getSession()->setMessageFlash($type, $message);
+    }
+
+
+
+    protected function isAuthentificated(){
+        return $this->requete->getSession()->existeAttribut("login");
     }
 
     /**
      * Effectue une redirection vers un contrôleur et une action spécifiques
-     * 
+     *
      * @param string $controleur Contrôleur
      * @param type $action Action Action
      */
     protected function rediriger($controleur, $action = null)
     {
         $racineWeb = Configuration::get("racineWeb", "/");
-        // Redirection vers l'URL /racine_site/controleur/action
+        // Redirection vers l'URL racine_site/controleur/action
+
         header("Location:" . $racineWeb . $controleur . "/" . $action);
     }
-
 }
