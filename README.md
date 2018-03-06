@@ -7,6 +7,6 @@ Support de l'article [Evoluer vers une architecture MVC en PHP] (http://bpesquet
 
 ## Description
 
-* Cette version emploie une architecture MVC procédurale avec un contrôleur frontal.
+* Cette version emploie une architecture MVC orientée objet.
 * Les autres versions sont disponibles sur les différentes branches du dépôt.
 

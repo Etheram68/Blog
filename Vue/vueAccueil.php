@@ -1,7 +1,7 @@
-<?php $titre = 'Mon Blog'; ?>
+<?php $this->titre = "Mon Blog"; ?>
 
-<?php ob_start(); ?>
-<?php foreach ($billets as $billet): ?>
+<?php foreach ($billets as $billet):
+    ?>
     <article>
         <header>
             <a href="<?= "index.php?action=billet&id=" . $billet['id'] ?>">
@@ -13,6 +13,3 @@
     </article>
     <hr />
 <?php endforeach; ?>
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'gabarit.php'; ?>
