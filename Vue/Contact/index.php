@@ -1,4 +1,4 @@
-<?php
+<?php    
 require 'recaptchalib.php';
 $siteKey = '6LcWfj4UAAAAAIbBCZma2f11zU4sawCXLwi8Yao7'; // votre clé publique
 $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
@@ -7,21 +7,35 @@ $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
     <div class="login-box">
         <h2>Laissez-moi un message</h2>
         <hr>
-        <form id="login-form" method="post" action="contact/contacter">
 
-            <label>Nom</label>
+            <?php if(array_key_exists('errors', $_SESSION)): ?>
+                <div class="alert alert-danger">
+                    <?php echo implode('<br />', $_SESSION['errors']); ?>
+                </div>
+            <?php endif; ?>
+            <?php if(array_key_exists('success', $_SESSION)): ?>
+                <div class="alert alert-success">
+                    Votre email à bien été envoyez
+                </div>
+            <?php endif; ?>
+
+
+            
+        <form id="login-form" method="post" action="Vue/Contact/post_contact.php">
+
+            <label for="inputname">Nom</label>
             <div>
-                <input type="text" class="largeur-totale bords-arrondis">
+                <input type="text" name="name" class="largeur-totale bords-arrondis" id="inputname" value="<?php echo isset($_SESSION['inputs']['name']) ? $_SESSION['inputs']['name'] :''; ?>">
             </div>
 
-            <label>Adress e.mail</label>
+            <label for="inputmail">Adress e.mail</label>
             <div>
-                <input type="text" class="largeur-totale bords-arrondis">
+                <input type="text" name="email" class="largeur-totale bords-arrondis" id="inputmail" value="<?php echo isset($_SESSION['inputs']['email']) ? $_SESSION['inputs']['email'] :''; ?>">
             </div>
 
-            <label>Message</label>
+            <label for="inputmessage">Message</label>
             <div>
-                <textarea class="largeur-totale bords-arrondis" rows="8"></textarea>
+                <textarea  name="message" class="largeur-totale bords-arrondis" rows="8" id="inputmessage" ><?php echo isset($_SESSION['inputs']['message']) ? $_SESSION['inputs']['message'] :''; ?></textarea>
             </div>
 
             <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
@@ -42,4 +56,7 @@ if(isset($_POST["g-recaptcha-response"])) {
     if ($resp != null && $resp->success) {echo "CAPTCHA OK";}
     else {echo "CAPTCHA incorrect";}
 }
+unset($_SESSION['inputs']);
+unset($_SESSION['success']);
+unset($_SESSION['errors']);
 ?>
