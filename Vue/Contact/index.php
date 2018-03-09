@@ -1,4 +1,5 @@
-<?php    
+<?php  
+require '_inc.php';
 require 'recaptchalib.php';
 $siteKey = '6LcWfj4UAAAAAIbBCZma2f11zU4sawCXLwi8Yao7'; // votre clé publique
 $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
@@ -21,27 +22,25 @@ $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
 
 
             
-        <form id="login-form" method="post" action="Vue/Contact/post_contact.php">
+        <form method="post" action="Vue/Contact/post_contact.php">
 
-            <label for="inputname">Nom</label>
-            <div>
-                <input type="text" name="name" class="largeur-totale bords-arrondis" id="inputname" value="<?php echo isset($_SESSION['inputs']['name']) ? $_SESSION['inputs']['name'] :''; ?>">
-            </div>
+            <?php $form = new Form(isset($_SESSION['inputs']) ? $_SESSION['inputs'] : []); ?>
+        
+            <!--Champs de text Nom -->
+                <?= $form->text('name', 'Votre Nom'); ?>
+            
 
-            <label for="inputmail">Adress e.mail</label>
-            <div>
-                <input type="text" name="email" class="largeur-totale bords-arrondis" id="inputmail" value="<?php echo isset($_SESSION['inputs']['email']) ? $_SESSION['inputs']['email'] :''; ?>">
-            </div>
+            <!--Champs de text email -->
+                <?= $form->email('email', 'Votre email') ?>
+             
+            <!--Champs de text Message -->
+            <?= $form->textarea('message', 'Votre message'); ?>
 
-            <label for="inputmessage">Message</label>
-            <div>
-                <textarea  name="message" class="largeur-totale bords-arrondis" rows="8" id="inputmessage" ><?php echo isset($_SESSION['inputs']['message']) ? $_SESSION['inputs']['message'] :''; ?></textarea>
-            </div>
-
-            <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
+           <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
             <div class="col-sm-6 col-lg-offset-4 form-group">
                 <input type="submit" class="bords-arrondis" value="Envoyer">
             </div>
+        
         </form>
     </div>
 </div>

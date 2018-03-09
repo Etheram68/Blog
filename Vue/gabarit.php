@@ -101,6 +101,7 @@ collapse"
     <?= $contenu ?>
 </div>
 
+
 <footer>
 
     <div class="container">

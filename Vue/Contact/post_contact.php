@@ -1,30 +1,25 @@
 <?php
-$errors = array();
+require 'class/Form.php';
+require 'class/Validator.php';
+$errors = [];
+$emails = ['francois681927@hotmail.fr'];
 
-	if(array_key_exists('name', $_POST) || $_POST['name'] == ''){
-		$errors['name'] = "Vous n'avez pas renseigné votre nom";
-	}
+$validator = new Validator($_POST);
+$validator->check('name', 'required');
+$validator->check('email', 'required');
+$validator->check('email', 'email');
+$validator->check('message', 'required');
+$errors = $validator->errors();
 
-	if(array_key_exists('email', $_POST) || $_POST['email'] == '' || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-		$errors['email'] = "Vous n'avez pas renseigné un email valide";
-	}
-	if(array_key_exists('message', $_POST) || $_POST['message'] == ''){
-		$errors['message'] = "Vous n'avez pas renseigné votre message";
-	}
+session_start();
 
-	session_start();
-	
-	if(!empty($errors)){
-		$_SESSION['errors'] = $errors;
-		$_SESSION['inputs'] = $_POST;
-		header('Location: /blogtest/contact');
-	}
-	else
-	{
-			$_SESSION['success'] = 1;
-			$message = $_POST['message'];
-			$headers = 'FROM: site@local.dev';
-
-		mail('francois681927@hotmail.fr', 'Formulaire de contact', $message, $headers);
-		header('Location: /blogtest/contact');
-	}
+if(!empty($errors)){
+    $_SESSION['errors'] = $errors;
+    $_SESSION['inputs'] = $_POST;
+    header('Location: /blogtest/contact');
+} else {
+    $_SESSION['success'] = 1;
+    $headers = 'FROM: ' . $_POST['email'];
+    mail($emails, 'Formulaire de contact de ' . $_POST['name'], $_POST['message'], $headers);
+    header('Location: /blogtest/contact');
+}
