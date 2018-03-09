@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="Contenu/css/bootstrap.min.css">
     <link rel="stylesheet" href="Contenu/css/font-awesome.css">
     <link href="Contenu/css/visiteur.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="Contenu/css/404.css" type="text/css">
 
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     	<link href="Contenu/css/toolkit.css" rel="stylesheet">
