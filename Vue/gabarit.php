@@ -110,8 +110,6 @@ collapse"
             
             <div>
                 <h3>Site conçu grace à</h3>
-                <p> Un framework MVC par <a target="_blank" href="https://github.com/bpesquet/MonBlog">Baptiste
-                        Pesquet</a><br>
                     Booststrap <a target="_blank" href="https://getbootstrap.com/">Framework CSS</a><br>
                     Tiny Mce. <a target="_blank" href="http://tinymce.com">WYSIWYG editor</a><br>
                     Développé par François Frey</a></p>

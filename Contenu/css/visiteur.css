@@ -694,7 +694,9 @@ form input, .left-block a {
 
 
 footer {
-
+	/*position: absolute;
+    bottom: 0;
+    width: 100%;*/
     background-color: #262626;
 }
 
