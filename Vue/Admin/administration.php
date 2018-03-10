@@ -73,13 +73,13 @@ $this->grade = $this->nettoyer($grade);
 
                                     <?php if ($billet['visible'] == "NON") : ?>
                                         <a id="lienBilletVisible"
-                                           href="admin/billetVisible/<?= $billet['id'] . '?statut=OUI' ?>">
+                                           href="#" class="btn-visible-billet" data-billet-title="<?= $this->nettoyer($billet['titre']) ?>" data-modal-confirm-url="admin/billetVisible/<?= $billet['id'] . '?statut=OUI' ?>">
                                             <img src="Contenu/images/symbol/visible.png" alt="Rendre visible le billet"
                                                  title="Cliquez pour rendre visible le billet">
                                         </a>
                                     <?php else : ?>
                                         <a id="lienBilletMasquer"
-                                           href="admin/billetVisible/<?= $billet['id'] . '?statut=NON' ?>">
+                                           href="#" class="btn-masquer-billet" data-billet-title="<?= $this->nettoyer($billet['titre']) ?>" data-modal-confirm-url="admin/billetVisible/<?= $billet['id'] . '?statut=NON' ?>">
                                             <img src="Contenu/images/symbol/masquer.png" alt="Masquer billet"
                                                  title="Cliquez pour masquer le billet">
                                         </a>
@@ -137,6 +137,28 @@ $(function(){
        e.preventDefault();
        $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
        $modal.find('.modal-body p').text("Etes vous sur de vouloir supprimer " + $(this).data('billetTitle'));
+       $modal.modal("show");
+   })
+});
+</script>
+<script>
+$(function(){
+    $modal = $('#modal-dialog');
+   $('a.btn-masquer-billet').on('click',function(e){
+       e.preventDefault();
+       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
+       $modal.find('.modal-body p').text("Etes vous sur de vouloir cacher " + $(this).data('billetTitle'));
+       $modal.modal("show");
+   })
+});
+</script>
+<script>
+$(function(){
+    $modal = $('#modal-dialog');
+   $('a.btn-visible-billet').on('click',function(e){
+       e.preventDefault();
+       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
+       $modal.find('.modal-body p').text("Etes vous sur de vouloir rendre visible " + $(this).data('billetTitle'));
        $modal.modal("show");
    })
 });
