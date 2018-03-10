@@ -50,10 +50,10 @@
             <div class="hang-text hang-3 animated fadeInDown">
             	<img src="/blogtest/Contenu/images/error/error-4.png" alt="" class="animated fadeInDown">
             </div>-->
-                        <h2 style="text-align: center;" class="error-msg">404</h2>
+                        <h2 style="text-align: center;" class="error-msg">403</h2>
             <p style="text-align: center;" class="error-info"></p><h3 style="text-align: center;">Où allez-vous comme ça ?</h3><br>
 
 <p style="text-align: center;">Vous serez bien plus en sécurité si vous faites demi-tour...</p><br>
 
-<div style="text-align: center;" class="options"><a class="button" href="#">Retour à l'accueil</a></div><p></p>
+<div style="text-align: center;" class="options"><a class="button_error" href="#">Retour à l'accueil</a></div><p></p>
             		</div>
