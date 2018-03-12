@@ -16,8 +16,7 @@ $this->grade = $this->nettoyer($grade);
                     <div class="col-xs-4 col-md-4 form-group">
 
                         <label>Date (AAAA-MM-DD)</label><br>
-                        <input name="dateBillet" class="crud-container" placeholder="Entrez la date de ce billet"
-                               required>
+                        <input name="dateBillet" class="crud-container" placeholder="Entrez la date de ce billet" required>
                     </div>
                     <div class="col-xs-4 col-md-4 form-group">
                         <label>Titre du billet</label><br>

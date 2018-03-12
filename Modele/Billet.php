@@ -117,9 +117,9 @@ class Billet extends Modele
 
     public function billetCreer($dateBillet, $titreBillet, $photoBillet, $contenuBillet)
     {
-        $sql = 'INSERT INTO T_BILLET SET BIL_DATE= :dateBillet, BIL_TITRE= :titreBillet, BIL_PHOTO= :photoBillet, BIL_CONTENU= :contenuBillet';
+        $sql = 'INSERT INTO T_BILLET SET BIL_DATE= now(), BIL_TITRE= :titreBillet, BIL_PHOTO= :photoBillet, BIL_CONTENU= :contenuBillet';
         return $this->executerRequete($sql, array(
-                'dateBillet' => $dateBillet,
+                
                 'titreBillet' => $titreBillet,
                 'photoBillet' => $photoBillet,
                 'contenuBillet' => $contenuBillet

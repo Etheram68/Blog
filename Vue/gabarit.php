@@ -110,7 +110,7 @@ collapse"
             
             <div>
                 <h3>Site conçu grace à</h3>
-                    Booststrap <a target="_blank" href="https://getbootstrap.com/">Framework CSS</a><br>
+                    <p>Booststrap <a target="_blank" href="https://getbootstrap.com/">Framework CSS</a><br>
                     Tiny Mce. <a target="_blank" href="http://tinymce.com">WYSIWYG editor</a><br>
                     Développé par François Frey</a></p>
             </div>

@@ -52,38 +52,38 @@ $this->grade = $this->nettoyer($grade);
                                     <?php if ($this->nettoyer($utilisateur['grade']) == "Administrateur" || $this->nettoyer($utilisateur['grade']) == "Moderateur") {
                                     } else { ?>
                                         <a id="lienSupprimerUtilisateur"
-                                           href="admin/utilisateurSupprimer/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                           href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurSupprimer/<?= $this->nettoyer($utilisateur['id']) ?>">
                                             <img src="Contenu/images/symbol/user-supr.png" alt="Supprimer utilisateur"
                                                  title="Supprimer l'utilisateur">
                                         </a>
                                         <?php if ($this->nettoyer($utilisateur['acces'] == "Banni")) { ?>
                                         <a id="lienDebanirUtilisateur"
-                                           href="admin/utilisateurDeBannir/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                           href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurDeBannir/<?= $this->nettoyer($utilisateur['id']) ?>">
                                             <img src="Contenu/images/symbol/user-unban.png" alt="Débanir l'utilisateur"
                                                  title="Débanir l'utilisateur">
                                         </a>
                                             <?php } else { ?>
                                         <a id="lienBanirUtilisateur"
-                                           href="admin/utilisateurBannir/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                           href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurBannir/<?= $this->nettoyer($utilisateur['id']) ?>">
                                             <img src="Contenu/images/symbol/user-ban.png" alt="Banir l'utilisateur"
                                                  title="Banir l'utilisateur">
                                         </a>
                                             <?php } ?>
                                     <?php } ?>
                                 </th>
-                                <th><a id="lienBanirUtilisateur"
-                                       href="admin/utilisateurDemote/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                <th><a id="lienBanirUtilisateurMode"
+                                       href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurDemote/<?= $this->nettoyer($utilisateur['id']) ?>">
                                         <img src="Contenu/images/symbol/user-demote.png"
                                              alt="Enlever les droits de moderation/administration"
                                              title="Enlever les droits de moderation/administration">
                                     </a>
                                     <a id="lienPromoteModo"
-                                       href="admin/utilisateurModerateur/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                       href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurModerateur/<?= $this->nettoyer($utilisateur['id']) ?>">
                                         <img src="Contenu/images/symbol/user-modo.png" alt="Promouvoir modérateur"
                                              title="Promouvoir modérateur">
                                     </a>
-                                    <a id="lienBanirUtilisateur"
-                                       href="admin/utilisateurAdministrateur/<?= $this->nettoyer($utilisateur['id']) ?>">
+                                    <a id="lienBanirUtilisateurProm"
+                                       href="#" data-billet-title="<?= $this->nettoyer($utilisateur['id']) ?>" data-modal-confirm-url="admin/utilisateurAdministrateur/<?= $this->nettoyer($utilisateur['id']) ?>">
                                         <img src="Contenu/images/symbol/user-admin.png" alt="Promouvoir administrateur"
                                              title="Promouvoir administrateur">
                                     </a>
@@ -94,9 +94,29 @@ $this->grade = $this->nettoyer($grade);
 
                 </div>
             </form>
-
+            <!-- Modal de confirmation de suppression-->
+            <div id="modal-dialog" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                            <h3>Demande de confirmation</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes-vous sur de vouloir supprimer le billet concerné ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" id="btnYes" class="btn btn-danger">Oui,
+                                je
+                                confirme</a>
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">Non, j'annule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr>
 
         </div>
     </div>
 </div>
+<script src="Contenu/js/alerte.js"></script>

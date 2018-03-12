@@ -16,7 +16,6 @@
     
 <link type="text/css" rel="stylesheet" href="Contenu/css/custom.css"/>
 
-
     <script src="Contenu/js/jquery.js"></script>
     <script src="Contenu/js/bootstrap.min.js"></script>
     <script src='Contenu/js/tinymce/tinymce.min.js'></script>

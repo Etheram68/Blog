@@ -22,7 +22,7 @@
                 </span>
                 <p class="titre-post">
                     <span class="bords-arrondis">EPISODE
-                    </span><?= $this->nettoyer($billet['titre']) ?>
+                    </span>&nbsp;<?= $this->nettoyer($billet['titre']) ?>
                 </p>
                 <p class="texte-post"><?= $this->supernettoyer($billet['contenu']) ?>
                 </p>

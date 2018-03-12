@@ -50,7 +50,8 @@ $this->grade = $this->nettoyer($grade) ?>
                                                  title="Editer le commentaire">
                                         </a>
                                         <a id="lienSupprimerCommentaire"
-                                           href="admin/commentaireSupprimer/<?= $commentaire['idc'] ?>">
+                                           href="#" data-billet-title="<?= $this->nettoyer($commentaire['titre']) ?>"
+                                       data-modal-confirm-url="admin/commentaireSupprimer/<?= $commentaire['idc'] ?>">
                                             <img src="Contenu/images/symbol/commentaire-sup.png"
                                                  alt="supprimer commentaire" title="Suprimer le commentaire">
                                         </a>
@@ -68,7 +69,40 @@ $this->grade = $this->nettoyer($grade) ?>
                         <?php } ?>
                 </div> <!-- #contenu -->
             </form>
+            <!-- Modal de confirmation de suppression-->
+            <div id="modal-dialog" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                            <h3>Demande de confirmation</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes-vous sur de vouloir supprimer le billet concerné ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" id="btnYes" class="btn btn-danger">Oui,
+                                je
+                                confirme</a>
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">Non, j'annule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr>
         </div>
     </div>
 </div>
+
+<!--<script>
+$(function(){
+    $modal = $('#modal-dialog');
+   $('a#lienSupprimerCommentaire').on('click',function(e){
+       e.preventDefault();
+       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
+       $modal.find('.modal-body p').text("Etes vous sur de vouloir supprimer le commentaire ");
+       $modal.modal("show");
+   })
+});
+</script>-->
+<script src="Contenu/js/alerte.js"></script>

@@ -130,36 +130,4 @@ $this->grade = $this->nettoyer($grade);
         </div>
     </div>
 </div>
-<script>
-$(function(){
-    $modal = $('#modal-dialog');
-   $('a.btn-del-billet').on('click',function(e){
-       e.preventDefault();
-       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
-       $modal.find('.modal-body p').text("Etes vous sur de vouloir supprimer " + $(this).data('billetTitle'));
-       $modal.modal("show");
-   })
-});
-</script>
-<script>
-$(function(){
-    $modal = $('#modal-dialog');
-   $('a.btn-masquer-billet').on('click',function(e){
-       e.preventDefault();
-       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
-       $modal.find('.modal-body p').text("Etes vous sur de vouloir cacher " + $(this).data('billetTitle'));
-       $modal.modal("show");
-   })
-});
-</script>
-<script>
-$(function(){
-    $modal = $('#modal-dialog');
-   $('a.btn-visible-billet').on('click',function(e){
-       e.preventDefault();
-       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
-       $modal.find('.modal-body p').text("Etes vous sur de vouloir rendre visible " + $(this).data('billetTitle'));
-       $modal.modal("show");
-   })
-});
-</script>
+<script src="Contenu/js/alerte.js"></script>

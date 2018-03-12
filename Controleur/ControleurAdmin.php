@@ -205,7 +205,7 @@ if (isset($message)) {
             $photoBillet = $this->requete->getParametre('photoBillet');
             $contenuBillet = $this->requete->getParametre('contenuBillet');
             $this->billet->billetModifier($id, $dateBillet, $titreBillet, $photoBillet, $contenuBillet);
-            $this->rediriger("admin");
+            $this->rediriger("admin/administration");
         }
 
         $billet = $this->billet->getBillet($id);
