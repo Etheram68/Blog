@@ -25,7 +25,7 @@ class Commentaire extends Modele
 
     public function getCommentairesTronques()
     {
-        $sql = 'SELECT T_BILLET.BIL_ID AS id, T_BILLET.BIL_TITRE AS titre, T_COMMENTAIRE.COM_ID AS idc, T_COMMENTAIRE.COM_CONTENU AS contenu, T_COMMENTAIRE.COM_SIGNALEMENT AS signalement FROM T_COMMENTAIRE, T_BILLET WHERE T_BILLET.BIL_ID = T_COMMENTAIRE.BIL_ID';
+        $sql = 'SELECT T_BILLET.BIL_ID AS id, T_BILLET.BIL_TITRE AS titre, T_COMMENTAIRE.COM_ID AS idc, T_COMMENTAIRE.COM_CONTENU AS contenu, T_COMMENTAIRE.COM_SIGNALEMENT AS signalement FROM T_COMMENTAIRE, T_BILLET WHERE T_BILLET.BIL_ID = T_COMMENTAIRE.BIL_ID ORDER BY T_COMMENTAIRE.COM_SIGNALEMENT DESC';
         $CommentairesTronques = $this->executerRequete($sql, array());
 
         return $CommentairesTronques->fetchall();
@@ -88,7 +88,7 @@ class Commentaire extends Modele
         $this->executerRequete($sql, array('id' => $id));
     }
 
-    //Ajout Pierre
+    //Ajout françois
     public function getNombreSignalements()
     {
         $sql = 'SELECT count(*) AS nbSignalements FROM T_COMMENTAIRE WHERE COM_SIGNALEMENT != 0';

@@ -97,3 +97,13 @@ $(function(){
        $modal.modal("show")
    })
 })
+
+$(function(){
+    $modal = $('#modal-dialog')
+   $('a#lienSupprimerSignalement').on('click',function(e){
+       e.preventDefault()
+       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'))
+       $modal.find('.modal-body p').text("Etes vous sur de vouloir supprimer les signialements ? ")
+       $modal.modal("show")
+   })
+})

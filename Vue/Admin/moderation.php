@@ -57,7 +57,8 @@ $this->grade = $this->nettoyer($grade) ?>
                                         </a>
                                         <?php if ($commentaire['signalement'] > 0) : ?>
                                             <a id="lienSupprimerSignalement"
-                                               href="admin/supprimerSignalement/<?= $commentaire['idc'] ?>">
+                                               href="#" data-billet-title="<?= $this->nettoyer($commentaire['titre']) ?>"
+                                       data-modal-confirm-url="admin/supprimerSignalement/<?= $commentaire['idc'] ?>">
                                                 <img src="Contenu/images/symbol/signalement-sup.png"
                                                      alt="supprimer signalement" title="Supprimer le/les signalements">
                                             </a>
@@ -93,16 +94,4 @@ $this->grade = $this->nettoyer($grade) ?>
         </div>
     </div>
 </div>
-
-<!--<script>
-$(function(){
-    $modal = $('#modal-dialog');
-   $('a#lienSupprimerCommentaire').on('click',function(e){
-       e.preventDefault();
-       $modal.find('a#btnYes').attr('href',$(this).data('modalConfirmUrl'));
-       $modal.find('.modal-body p').text("Etes vous sur de vouloir supprimer le commentaire ");
-       $modal.modal("show");
-   })
-});
-</script>-->
 <script src="Contenu/js/alerte.js"></script>
