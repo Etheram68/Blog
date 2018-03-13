@@ -15,34 +15,17 @@
     <link rel="stylesheet" href="Contenu/css/font-awesome.css">
     <link href="Contenu/css/visiteur.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="Contenu/css/404.css" type="text/css">
-
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    	<link href="Contenu/css/toolkit.css" rel="stylesheet">
-    	<link href="Contenu/css/application.css" rel="stylesheet">
-    	<style>
-      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
-      /* this chunk of css is not part of the toolkit :) */
-      body {
+   	<link href="Contenu/css/toolkit.css" rel="stylesheet">
+    <link href="Contenu/css/application.css" rel="stylesheet">
+    	
+      <style>
+        body {
         width: 1px;
         min-width: 100%;
-        *width: 100%;
+        width: 100%;
       }
-    </style>
-    <script src="Contenu/js/jquery.min.js"></script>
-      <script src="Contenu/js/popper.min.js"></script>
-      <script src="Contenu/js/chart.js"></script>
-      <script src="Contenu/js/toolkit.js"></script>
-      <script src="Contenu/js/application.js"></script>
-      <script>
-        // execute/clear BS loaders for docs
-        $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
-      </script>
-
-
-    <script src="Contenu/js/jquery.js"></script>
-    <script src="Contenu/js/bootstrap.min.js"></script>
-    <script src='Contenu/js/tinymce/tinymce.min.js'></script>
-
+      </style> 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' id='Roboto-css'
           href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
     <link rel='stylesheet' id='Patua+One-css' href='http://fonts.googleapis.com/css?family=Patua+One:100,300,400,400italic,700'>
@@ -51,6 +34,7 @@
     <link rel='stylesheet' id='Lato-css' href='http://fonts.googleapis.com/css?family=Lato:100,300,400'>
     <link rel='stylesheet' id='Great+Vibes-css' href='http://fonts.googleapis.com/css?family=Great+Vibes'>
     <link rel="stylesheet" type="text/css" href="Contenu/css/font-awesome.css" media="screen">
+
 </head>
 
 <body class="with-top-navbar">
@@ -59,23 +43,16 @@
 	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
 		<a class="navbar-brand" href="index.php">
     <img src="Contenu/images/brand-white.png" alt="brand">
-  </a>
-  <button
-    class="navbar-toggler navbar-toggler-right d-md-none"
-    type="button"
-    data-toggle="			
-collapse"
-    data-target="#navbarResponsive"
-    aria-controls="navbarResponsive"
-    aria-expanded="false"
-    aria-label="Toggle navigation">
+    </a>
+
+  <button class="navbar-toggler navbar-toggler-right d-md-none" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarResponsive">
+  <div class="collapse navbar-collapse" id="navbarResponsive" style="">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Accueil <!--<span class="sr-only">(current)</span>--></a>
+        <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="histoire">Mon histoire</a>
@@ -83,7 +60,10 @@ collapse"
       <li class="nav-item">
         <a class="nav-link" href="contact">Contact</a>
       </li>
-      </ul>      
+      </ul>
+      <form class="form-inline float-right d-none d-md-flex">
+      <input class="form-control" type="text" data-action="grow" placeholder="Search">
+    </form>      
   </div>
 </nav>
 
@@ -91,6 +71,7 @@ collapse"
 
     <h1 class="titre-page">Mon Blog</h1>
     <h2 class="titre-complement">Retrouvez mes articles</h2>
+
 </header>
 
 <div class="container">
@@ -138,5 +119,17 @@ collapse"
     </div>
 
 </footer>
+      <script src="Contenu/js/menu/jquery.min1.js"></script>
+      <script src="Contenu/js/menu/popper.min1.js"></script>
+      <script src="Contenu/js/menu/chart1.js"></script>
+      <script src="Contenu/js/menu/toolkit1.js"></script>
+      <script src="Contenu/js/menu/application1.js"></script>
+      <script src="Contenu/js/jquery.js"></script>
+      <script src="Contenu/js/bootstrap.min.js"></script>
+      <script src='Contenu/js/tinymce/tinymce.min.js'></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
 </body>
 </html>
