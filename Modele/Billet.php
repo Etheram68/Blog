@@ -27,7 +27,7 @@ class Billet extends Modele
     public function getBillets($page = 1)
     {
 
-        $sql = 'select BIL_ID as id, BIL_DATE as date,'
+        $sql = 'select BIL_ID as id, DATE_FORMAT(BIL_DATE, "%d-%m-%Y %h:%i:%s") as date,'
             . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
             . ' order by BIL_ID desc';
         $billets = $this->executerRequete($sql, array(), self::MAX_PER_PAGE, ($page - 1) * self::MAX_PER_PAGE);
@@ -41,7 +41,7 @@ class Billet extends Modele
     public function getBilletsVisible($page = 1)
     {
 
-        $sql = 'select BIL_ID as id, BIL_DATE as date,'
+        $sql = 'select BIL_ID as id, DATE_FORMAT(BIL_DATE, "%d-%m-%Y %h:%i:%s") as date,'
             . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
             . ' WHERE BIL_VISIBLE= "OUI"'
             . ' order by BIL_ID desc';
@@ -52,7 +52,7 @@ class Billet extends Modele
     public function getBilletsTronques($page = 1, $limit = 50)
     {
         $valeur = intval($limit);
-        $sql = 'select billet.BIL_ID AS id, billet.BIL_CONTENU as contenu, billet.BIL_TITRE as titre, billet.BIL_DATE as date, billet.BIL_VISIBLE as visible, COUNT(com.COM_ID) as cptCom, SUM(com.COM_SIGNALEMENT) as cptSig'
+        $sql = 'select billet.BIL_ID AS id, billet.BIL_CONTENU as contenu, billet.BIL_TITRE as titre, DATE_FORMAT(billet.BIL_DATE, "%d-%m-%Y %h:%i:%s") as date, billet.BIL_VISIBLE as visible, COUNT(com.COM_ID) as cptCom, SUM(com.COM_SIGNALEMENT) as cptSig'
             . ' from T_BILLET as billet'
             . ' LEFT JOIN T_COMMENTAIRE com ON com.BIL_ID = billet.BIL_ID'
             . ' GROUP BY billet.BIL_ID'
@@ -64,7 +64,7 @@ class Billet extends Modele
     public function getBilletsTronquesVisible($page = 1, $left = 50)
     {
         $valeur = intval($left);
-        $sql = 'select billet.BIL_ID AS id, LEFT (billet.BIL_CONTENU, :left) as contenu, billet.BIL_TITRE as titre, billet.BIL_PHOTO as photo, billet.BIL_DATE as date, billet.BIL_VISIBLE as visible, COUNT(com.COM_ID) as cptCom'
+        $sql = 'select billet.BIL_ID AS id, LEFT (billet.BIL_CONTENU, :left) as contenu, billet.BIL_TITRE as titre, billet.BIL_PHOTO as photo, DATE_FORMAT(billet.BIL_DATE, "%d-%m-%Y %h:%i:%s") as date, billet.BIL_VISIBLE as visible, COUNT(com.COM_ID) as cptCom'
             . ' from T_BILLET as billet'
             . ' LEFT JOIN T_COMMENTAIRE com ON com.BIL_ID = billet.BIL_ID'
             . ' WHERE BIL_VISIBLE= "OUI"'

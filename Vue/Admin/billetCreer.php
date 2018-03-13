@@ -15,8 +15,8 @@ $this->grade = $this->nettoyer($grade);
                 <div class="row">
                     <div class="col-xs-4 col-md-4 form-group">
 
-                        <label>Date (AAAA-MM-DD)</label><br>
-                        <input name="dateBillet" class="crud-container" placeholder="Entrez la date de ce billet" required>
+                        <label>Date (DD-MM-AAAA)</label><br>
+                        <input name="dateBillet" class="crud-container" placeholder="Entrez la date de ce billet" value="<?php $date = date("d-m-Y"); print("$date") ?>" required>
                     </div>
                     <div class="col-xs-4 col-md-4 form-group">
                         <label>Titre du billet</label><br>
@@ -25,6 +25,7 @@ $this->grade = $this->nettoyer($grade);
                     <div class="col-xs-4 col-md-4 form-group">
                         <label>Illustration</label><br>
                         <input name="photoBillet" placeholder="Photo associée">
+                        
                     </div>
                     <div class="col-xs-12 col-md-12 form-group">
                         <label>Texte</label>

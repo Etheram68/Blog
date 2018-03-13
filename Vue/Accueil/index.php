@@ -21,7 +21,7 @@
                     <i class="fa fa-user"></i> Jean FORTEROCHE - <?= $this->nettoyer($billet['date']) ?>
                 </span>
                 <p class="titre-post">
-                    <span class="bords-arrondis">EPISODE
+                    <span class="bords-arrondis">EPISODE <?= $this->nettoyer($billet['id']) ?>
                     </span>&nbsp;<?= $this->nettoyer($billet['titre']) ?>
                 </p>
                 <p class="texte-post"><?= $this->supernettoyer($billet['contenu']) ?>
