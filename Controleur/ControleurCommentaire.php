@@ -8,7 +8,7 @@ use Blog\Modele\Commentaire;
 /**
  * Contrôleur des actions liées aux billets
  *
- * @author Baptiste Pesquet
+ * @author 
  */
 class ControleurCommentaire extends Controleur {
 
