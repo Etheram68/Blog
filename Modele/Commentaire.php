@@ -15,7 +15,7 @@ class Commentaire extends Modele
 // Renvoie la liste des commentaires associés à un billet
     public function getCommentaires($idBillet)
     {
-        $sql = 'select COM_ID as id, COM_DATE as date,'
+        $sql = 'select COM_ID as id, DATE_FORMAT(COM_DATE, "%d-%m-%Y %h:%i:%s") as date,'
             . ' COM_AUTEUR as auteur, COM_CONTENU as contenu from T_COMMENTAIRE'
             . ' where BIL_ID= :id';
         $commentaires = $this->executerRequete($sql, array('id' => $idBillet));
@@ -34,7 +34,7 @@ class Commentaire extends Modele
 
     public function getCommentaire($idCommentaire)
     {
-        $sql = 'select COM_ID as id, COM_DATE as date, BIL_ID as bil_id,'
+        $sql = 'select COM_ID as id, DATE_FORMAT(COM_DATE, "%d-%m-%Y %h:%i:%s") as date, BIL_ID as bil_id,'
             . ' COM_AUTEUR as auteur, COM_CONTENU as contenu from T_COMMENTAIRE'
             . ' where COM_ID=:id';
         $commentaire = $this->executerRequete($sql, array('id' => $idCommentaire))->fetch();
