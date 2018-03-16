@@ -35,7 +35,7 @@ a {
 
 }
 .site{
-    padding: 500px 0 10px 0;
+    padding: 410px 0 10px 0;
 }
 header.visiteur{
 
@@ -66,10 +66,12 @@ header.dark {
 H1.titre-page {
 
     font-family:Baskerville, Lato, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
-    margin: 0;
+    margin: 100px 0 0 0;
     line-height:150px;
-    color: #ffc013;
-    font-weight:300;
+    color: #000000;
+    font-weight:300px;
+    text-align: center;
+    position: relative;
 }
 
 h2.titre-complement{
@@ -77,10 +79,10 @@ h2.titre-complement{
     margin: -50px 0 0 0;
     /* line-height:200px; */
     font-size:1.2em;
-    color: #ffc013;
+    color: #000000;
     font-weight:300;
-
-
+    text-align: center;
+    position: relative;
 }
 
 
@@ -88,8 +90,6 @@ h2.titre-complement{
 nav {
     margin:0 auto;
     height:40px;
-
-
 }
 
 nav .menu{
