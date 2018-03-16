@@ -67,14 +67,20 @@
   </div>
 </nav>
 
-<header class="visiteur">
+<header class="visiteur scene">
+	<img class="scene header" data-modifier="30" src="https://s.electerious.com/parallaxscene/p0.png">
+	<img class="scene header" data-modifier="18" src="https://s.electerious.com/parallaxscene/p1.png">
+	<img class="scene header" data-modifier="12" src="https://s.electerious.com/parallaxscene/p2.png">
+	<img class="scene header" data-modifier="8" src="https://s.electerious.com/parallaxscene/p3.png">
+	<img class="scene header" data-modifier="6" src="https://s.electerious.com/parallaxscene/p4.png">
+	<img class="scene header" data-modifier="0" src="https://s.electerious.com/parallaxscene/p6.png">
 
-    <h1 class="titre-page">Mon Blog</h1>
+	<h1 class="titre-page">Mon Blog</h1>
     <h2 class="titre-complement">Retrouvez mes articles</h2>
 
 </header>
 
-<div class="container">
+<div class="container site">
             <?php if (!empty($flash)): ?>
                 <div class="alert alert-<?= $flash['type'] ?>">
                     <p><strong><?= ucfirst($flash['type']) ?> !</strong> <?= $flash['message'] ?></p>
@@ -119,6 +125,8 @@
     </div>
 
 </footer>
+	<script src="https://s.electerious.com/basicScroll/dist/basicScroll.min.js"></script>
+	  <script src="Contenu/js/scene.js"></script>
       <script src="Contenu/js/menu/jquery.min1.js"></script>
       <script src="Contenu/js/menu/popper.min1.js"></script>
       <script src="Contenu/js/menu/chart1.js"></script>
