@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c29e424d35b47d78307aaf02605c187)](https://www.codacy.com/app/Etheram68/Blog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Etheram68/Blog&amp;utm_campaign=Badge_Grade)
 # Blog
 Modification de l'architecture en MVC Objet avec un Framework
 Modification du Design du site
