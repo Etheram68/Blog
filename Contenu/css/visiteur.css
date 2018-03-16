@@ -166,7 +166,7 @@ nav .menu>li:first-child{
     position:relative;
     height:35px;
     margin: -43px 8px 0 8px;
-    background:rgba(0,0,0,.8);
+    background:rgba(0, 0, 0, 0.8);
     color:#ccc;
     line-height:35px;
     padding-left:15px;
