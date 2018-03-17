@@ -41,7 +41,7 @@ $this->grade = $this->nettoyer($grade) ?>
                                         <?= $this->nettoyer($commentaire['contenu']) ?>
                                     </th>
                                     <th>
-                                        <?= ($this->nettoyer($commentaire['signalement'])) ? "Oui" : "Non" ?>
+                                        <?= $this->nettoyer($commentaire['signalement']) ?>
                                     </th>
                                     <th>
                                         <a id="lienEditerCommentaire"
