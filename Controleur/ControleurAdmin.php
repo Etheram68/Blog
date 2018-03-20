@@ -159,8 +159,7 @@ if (isset($message)) {
     public function billetCreer()
     {
         $this->needAdminRole();
-        if ($this->requete->existeParametre("dateBillet") && $this->requete->existeParametre("titreBillet") && $this->requete->existeParametre("contenuBillet")) {
-            $dateBillet = $this->requete->getParametre('dateBillet');
+        if ($this->requete->existeParametre("titreBillet") && $this->requete->existeParametre("contenuBillet")) {
             $titreBillet = $this->requete->getParametre('titreBillet');
 
             if($this->requete->existeParametre('photoBillet')){

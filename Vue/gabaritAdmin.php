@@ -26,7 +26,7 @@
 
 <?php $this->actif = "class='active'" ?>
 <div class="bg-dark" id="wrap">
-    <div id="top">
+    
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">

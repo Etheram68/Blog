@@ -1,8 +1,5 @@
 <?php  
 require '_inc.php';
-require 'recaptchalib.php';
-$siteKey = '6LcWfj4UAAAAAIbBCZma2f11zU4sawCXLwi8Yao7'; // votre clé publique
-$secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
 ?>
 <div class="row">
     <div class="login-box">
@@ -36,7 +33,7 @@ $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
             <!--Champs de text Message -->
             <?= $form->textarea('message', 'Votre message'); ?>
 
-           <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
+           
             <div class="col-sm-6 col-lg-offset-4 form-group">
                 <input type="submit" class="bords-arrondis" value="Envoyer">
             </div>
@@ -44,17 +41,8 @@ $secret = '6LcWfj4UAAAAAEgMUSRlSX8HgYzwTgk6rHkMTrzp'; // votre clé privée
         </form>
     </div>
 </div>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+
 <?php
-$reCaptcha = new ReCaptcha($secret);
-if(isset($_POST["g-recaptcha-response"])) {
-    $resp = $reCaptcha->verifyResponse(
-        $_SERVER["REMOTE_ADDR"],
-        $_POST["g-recaptcha-response"]
-    );
-    if ($resp != null && $resp->success) {echo "CAPTCHA OK";}
-    else {echo "CAPTCHA incorrect";}
-}
 unset($_SESSION['inputs']);
 unset($_SESSION['success']);
 unset($_SESSION['errors']);

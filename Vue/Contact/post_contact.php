@@ -16,10 +16,10 @@ session_start();
 if(!empty($errors)){
     $_SESSION['errors'] = $errors;
     $_SESSION['inputs'] = $_POST;
-    header('Location: /blogtest/contact');
+    header('Location: ../?controleur=contact');
 } else {
     $_SESSION['success'] = 1;
     $headers = 'FROM: ' . $_POST['email'];
     mail($emails, 'Formulaire de contact de ' . $_POST['name'], $_POST['message'], $headers);
-    header('Location: /blogtest/contact');
+    header('Location: ../?controleur=contact');
 }

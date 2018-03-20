@@ -10,11 +10,44 @@ use Blog\Framework\Modele;
  */
 class Billet extends Modele
 {
+    private $_id;
+    private $_date;
+    private $_titre;
+    private $_contenu;
+    private $_visible;
+    private $_photo;
 
     const MAX_PER_PAGE = 3;
     const STATUT_HIDDEN = 'NON';
     const STATUT_VISIBLE = 'OUI';
 
+     // Liste des getters
+  
+  public function id() { return $this->_id; }  
+  public function date() { return $this->_date; }  
+  public function titre() { return $this->_titre; }  
+  public function contenu() { return $this->_contenu; }  
+  public function _visible() { return $this->_visible; }  
+  public function photo() { return $this->_photo; }
+
+  public function setId($id)
+  {    
+      $this->_id = (int) $id;    
+  }
+   public function settitre($titre)
+  {
+    if (is_string($titre))
+    {
+      $this->_titre = $titre;
+    }
+  }
+  public function setcontenu($contenu)
+  {
+    if (is_string($contenu))
+    {
+      $this->_contenu = $contenu;
+    }
+  }
 
     /*
      * Renvoie le début tronqué d'un billet pour l'admin (initialement) la valeur de la troncature est $limit
@@ -88,8 +121,8 @@ class Billet extends Modele
     public function getBillet($idBillet)
     {
         $sql = 'select BIL_ID as id, BIL_DATE as date,'
-            . ' BIL_TITRE as titre, BIL_CONTENU as contenu, BIL_PHOTO as photo from T_BILLET'
-            . ' where BIL_ID= :billetID';
+            . ' BIL_TITRE as titre, BIL_CONTENU as contenu, BIL_PHOTO as photo, BIL_VISIBLE as visible from T_BILLET'
+            . ' where BIL_ID= :billetID AND BIL_VISIBLE= "OUI"';
         $billet = $this->executerRequete($sql, array('billetID' => $idBillet));
         if ($billet->rowCount() > 0)
             return $billet->fetch();  // Accès à la première ligne de résultat
@@ -109,7 +142,7 @@ class Billet extends Modele
      */
     public function getNombreBillets()
     {
-        $sql = 'SELECT count(*) AS nbBillets FROM T_BILLET';
+        $sql = 'SELECT count(*) AS nbBillets FROM T_BILLET WHERE BIL_VISIBLE="OUI"';
         $resultat = $this->executerRequete($sql);
         $ligne = $resultat->fetch(); // Le résultat comporte toujours 1 ligne
         return $ligne['nbBillets'];

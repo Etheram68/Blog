@@ -13,18 +13,14 @@ $this->grade = $this->nettoyer($grade);
             <hr>
             <form method="post" class="crud-box">
                 <div class="row">
-                    <div class="col-xs-4 col-md-4 form-group">
-
-                        <label>Date (DD-MM-AAAA)</label><br>
-                        <input name="dateBillet" class="crud-container" placeholder="Entrez la date de ce billet" value="<?php $date = date("d-m-Y"); print("$date") ?>" required>
-                    </div>
-                    <div class="col-xs-4 col-md-4 form-group">
+                    
+                    <div class="col-xs-8 col-md-8 form-group">
                         <label>Titre du billet</label><br>
                         <input name="titreBillet" placeholder="Entrez votre le titre" required>
                     </div>
                     <div class="col-xs-4 col-md-4 form-group">
-                        <label>Illustration</label><br>
-                        <input name="photoBillet" placeholder="Photo associée">
+                        <label for="photoBillet">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
+                        <center><input type="file" name="photoBillet" id="photoBillet" /></center><br />
                         
                     </div>
                     <div class="col-xs-12 col-md-12 form-group">
