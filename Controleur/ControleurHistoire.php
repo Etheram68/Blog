@@ -3,8 +3,8 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
-use Blog\Modele\Utilisateur;
-use Blog\Modele\Histoire;
+use Blog\Modele_Dao\User_Dao;
+use Blog\Modele_Dao\History_Dao;
 
 
 class ControleurHistoire extends Controleur
@@ -14,8 +14,8 @@ class ControleurHistoire extends Controleur
 
     public function __construct()
     {
-        $this->utilisateur = new Utilisateur();
-        $this->histoire = new Histoire();
+        $this->utilisateur = new User_Dao();
+        $this->histoire = new History_Dao();
     }
 
     public function index()

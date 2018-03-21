@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Modele;
+namespace Blog\Modele_Dao;
 
 use Blog\Framework\Modele;
 
@@ -8,48 +8,13 @@ use Blog\Framework\Modele;
  * Fournit les services d'accès aux genres musicaux
  *
  */
-class Billet extends Modele
+class Billet_Dao extends Modele
 {
-    private $_id;
-    private $_date;
-    private $_titre;
-    private $_contenu;
-    private $_visible;
-    private $_photo;
-
     const MAX_PER_PAGE = 3;
     const STATUT_HIDDEN = 'NON';
     const STATUT_VISIBLE = 'OUI';
 
-     // Liste des getters
-  
-  public function id() { return $this->_id; }  
-  public function date() { return $this->_date; }  
-  public function titre() { return $this->_titre; }  
-  public function contenu() { return $this->_contenu; }  
-  public function _visible() { return $this->_visible; }  
-  public function photo() { return $this->_photo; }
-
-  public function setId($id)
-  {    
-      $this->_id = (int) $id;    
-  }
-   public function settitre($titre)
-  {
-    if (is_string($titre))
-    {
-      $this->_titre = $titre;
-    }
-  }
-  public function setcontenu($contenu)
-  {
-    if (is_string($contenu))
-    {
-      $this->_contenu = $contenu;
-    }
-  }
-
-    /*
+   /*
      * Renvoie le début tronqué d'un billet pour l'admin (initialement) la valeur de la troncature est $limit
      */
 
@@ -152,7 +117,7 @@ class Billet extends Modele
     {
         $sql = 'INSERT INTO T_BILLET SET BIL_DATE= now(), BIL_TITRE= :titreBillet, BIL_PHOTO= :photoBillet, BIL_CONTENU= :contenuBillet';
         return $this->executerRequete($sql, array(
-                
+
                 'titreBillet' => $titreBillet,
                 'photoBillet' => $photoBillet,
                 'contenuBillet' => $contenuBillet
@@ -203,7 +168,7 @@ class Billet extends Modele
 
     public function formatDate($billet){
         $dateModifie = IntlDateFormatter::formatObject(new DateTime($billet['date']),IntlDateFormatter::LONG);
-    return $dateModifie;
+        return $dateModifie;
     }
 
 }

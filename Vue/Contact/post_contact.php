@@ -2,7 +2,7 @@
 require 'class/Form.php';
 require 'class/Validator.php';
 $errors = [];
-$emails = ['francois681927@hotmail.fr'];
+
 
 $validator = new Validator($_POST);
 $validator->check('name', 'required');
@@ -20,6 +20,6 @@ if(!empty($errors)){
 } else {
     $_SESSION['success'] = 1;
     $headers = 'FROM: ' . $_POST['email'];
-    mail($emails, 'Formulaire de contact de ' . $_POST['name'], $_POST['message'], $headers);
+    mail('frey.francois68@gmail.com', 'Formulaire de contact de ' . $_POST['name'], $_POST['message'], $headers);
     header('Location: ../?controleur=contact');
 }

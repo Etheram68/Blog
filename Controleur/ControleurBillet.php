@@ -3,9 +3,9 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
-use Blog\Modele\Billet;
-use Blog\Modele\Commentaire;
-use Blog\Modele\Utilisateur;
+use Blog\Modele_Dao\Billet_Dao;
+use Blog\Modele_Dao\Commentary_Dao;
+use Blog\Modele_Dao\User_Dao;
 
 /**
  * Contrôleur des actions liées aux billets
@@ -24,9 +24,9 @@ class ControleurBillet extends Controleur
      */
     public function __construct()
     {
-        $this->billet = new Billet();
-        $this->commentaire = new Commentaire();
-        $this->utilisateur = new Utilisateur();
+        $this->billet = new Billet_Dao();
+        $this->commentaire = new Commentary_Dao();
+        $this->utilisateur = new User_Dao();
     }
 
     // Affiche les détails sur un billet

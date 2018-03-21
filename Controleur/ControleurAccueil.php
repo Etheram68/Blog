@@ -4,10 +4,10 @@ namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
 use Blog\Framework\Session;
-use Blog\Modele\Billet;
-use Blog\Modele\Commentaire;
-use Blog\Modele\Utilisateur;
-use Blog\Modele\Histoire;
+use Blog\Modele_Dao\Billet_Dao;
+use Blog\Modele_Dao\Commentary_Dao;
+use Blog\Modele_Dao\User_Dao;
+use Blog\Modele_Dao\History_Dao;
 
 class ControleurAccueil extends Controleur
 {
@@ -17,10 +17,10 @@ class ControleurAccueil extends Controleur
 
     public function __construct()
     {
-        $this->billet = new Billet();
-        $this->commentaire = new Commentaire();
-        $this->utilisateur = new Utilisateur();
-        $this->histoire = new Histoire();
+        $this->billet = new Billet_Dao();
+        $this->commentaire = new Commentary_Dao();
+        $this->utilisateur = new User_Dao();
+        $this->histoire = new History_Dao();
     }
 
     // Affiche la liste de tous les billets du blog

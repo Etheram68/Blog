@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Modele;
+namespace Blog\Modele_Dao;
 
 use Blog\Framework\Modele;
 
@@ -9,7 +9,7 @@ use Blog\Framework\Modele;
  *
  * @author Pierre-emmanuel Laporte
  */
-class Upload extends Modele
+class Upload_Dao extends Modele
 {
 
 

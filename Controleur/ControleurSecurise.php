@@ -3,7 +3,7 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
-use Blog\Modele\Utilisateur;
+use Blog\Modele_Dao\User_Dao;
 
 /**
  * Classe parente des contrôleurs soumis à authentification

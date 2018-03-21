@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Modele;
+namespace Blog\Modele_Dao;
 
 use Blog\Framework\Modele;
 use Blog\Framework\Session;
@@ -10,7 +10,7 @@ use Blog\Framework\Session;
  *
  * @author Baptiste Pesquet
  */
-class Utilisateur extends Modele
+class User_Dao extends Modele
 {
     /**
      * Vérifie qu'un utilisateur existe dans la BD

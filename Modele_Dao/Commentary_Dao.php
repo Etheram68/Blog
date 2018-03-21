@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Modele;
+namespace Blog\Modele_Dao;
 
 use Blog\Framework\Modele;
 
@@ -9,7 +9,7 @@ use Blog\Framework\Modele;
  *
  * @author Baptiste Pesquet
  */
-class Commentaire extends Modele
+class Commentary_Dao extends Modele
 {
 
 // Renvoie la liste des commentaires associés à un billet
