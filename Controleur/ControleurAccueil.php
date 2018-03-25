@@ -4,10 +4,10 @@ namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
 use Blog\Framework\Session;
-use Blog\Modele_Dao\Billet_Dao;
-use Blog\Modele_Dao\Commentary_Dao;
-use Blog\Modele_Dao\User_Dao;
-use Blog\Modele_Dao\History_Dao;
+use Blog\Modele_Dao\BilletDao;
+use Blog\Modele_Dao\CommentaryDao;
+use Blog\Modele_Dao\UserDao;
+use Blog\Modele_Dao\HistoireDao;
 
 class ControleurAccueil extends Controleur
 {
@@ -17,24 +17,22 @@ class ControleurAccueil extends Controleur
 
     public function __construct()
     {
-        $this->billet = new Billet_Dao();
-        $this->commentaire = new Commentary_Dao();
-        $this->utilisateur = new User_Dao();
-        $this->histoire = new History_Dao();
+        $this->billet = new BilletDao();
+        $this->commentaire = new CommentaryDao();
+        $this->utilisateur = new UserDao();
+        $this->histoire = new HistoireDao();
     }
 
     // Affiche la liste de tous les billets du blog
     public function index()
     {
         $page = 1;
-        $histoire = $this->histoire->auteur();
         $billets = $this->billet->getBilletsTronquesVisible($page, 200);
         $nbPages = $this->billet->getNombrePages();
         if (isset($_COOKIE['no_splash'])) {
             $this->genererVue(array('billets' => $billets,
                 'page' => $page,
                 'nbPages' => $nbPages,
-                'histoire' => $histoire,
             ));
         } else {
             $this->rediriger('accueil', 'splash');

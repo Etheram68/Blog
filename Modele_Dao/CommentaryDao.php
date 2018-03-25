@@ -9,7 +9,7 @@ use Blog\Framework\Modele;
  *
  * @author Baptiste Pesquet
  */
-class Commentary_Dao extends Modele
+class CommentaryDao extends Modele
 {
 
 // Renvoie la liste des commentaires associés à un billet

@@ -9,7 +9,7 @@ use Blog\Framework\Modele;
  *
  * @author Pierre-emmanuel Laporte
  */
-class Upload_Dao extends Modele
+class UploadDao extends Modele
 {
 
 

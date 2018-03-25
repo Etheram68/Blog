@@ -5,12 +5,8 @@ namespace Blog\Modele_Dao;
 use Blog\Framework\Modele;
 use Blog\Framework\Session;
 
-/**
- * Modélise un utilisateur du blog
- *
- * @author Baptiste Pesquet
- */
-class User_Dao extends Modele
+
+class UserDao extends Modele
 {
     /**
      * Vérifie qu'un utilisateur existe dans la BD

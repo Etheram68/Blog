@@ -3,11 +3,11 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Session;
-use Blog\Modele_Dao\Billet_Dao;
-use Blog\Modele_Dao\Commentary_Dao;
-use Blog\Modele_Dao\User_Dao;
-use Blog\Modele_Dao\Upload_Dao;
-use Blog\Modele_Dao\History_Dao;
+use Blog\Modele_Dao\BilletDao;
+use Blog\Modele_Dao\CommentaryDao;
+use Blog\Modele_Dao\UserDao;
+use Blog\Modele_Dao\UploadDao;
+use Blog\Modele_Dao\HistoireDao;
 
 
 /**
@@ -27,11 +27,11 @@ class ControleurAdmin extends ControleurSecurise
      */
     public function __construct()
     {
-        $this->billet = new Billet_Dao();
-        $this->commentaire = new Commentary_Dao();
-        $this->utilisateur = new User_Dao();
-        $this->upload = new Upload_Dao();
-        $this->histoire = new History_Dao();
+        $this->billet = new BilletDao();
+        $this->commentaire = new CommentaryDao();
+        $this->utilisateur = new UserDao();
+        $this->upload = new UploadDao();
+        $this->histoire = new HistoireDao();
     }
 
     public function index()

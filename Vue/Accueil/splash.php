@@ -16,6 +16,7 @@
 
                 <br>
                 Il est disponible en OpenSource sur <a href="https://github.com/Etheram68/Blog">dépot GIT <img src="Contenu/images/symbol/gitlogo.png" alt="Logo Git"></a><br>
+                <a href="#">Documentation du site</a>
                 <br>
                 Pour tester le site vous pouvez vous identifier sur l'interface admin :<br>
                 <br>

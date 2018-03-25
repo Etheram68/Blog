@@ -10,5 +10,3 @@ Autoloader::register();
 
 $routeur = new Routeur();
 $routeur->routerRequete();
-
-

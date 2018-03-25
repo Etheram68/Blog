@@ -1,4 +1,4 @@
-<?php  
+<?php
 require '_inc.php';
 ?>
 <div class="row">
