@@ -13,12 +13,15 @@ Bonne installation du site web.
 
 En cas d'utilisation sur windows remplacer le contenu du .Htaccess par 
 
-# Réécrit une URL de type xxx/yyy/zzz en index.php?controleur=xxx&action=yyy&id=zzz
-RewriteEngine On
-RewriteRule ^index\.php$ - [L]
-RewriteRule ^([a-zA-Z]*)/?([a-zA-Z]*)?/?([a-zA-Z0-9]*)?/?$ index.php?controleur=$1&action=$2&id=$3 [QSA,NC,L]
-# END
+ # Réécrit une URL de type xxx/yyy/zzz en index.php?controleur=xxx&action=yyy&id=zzz
 
+RewriteEngine On
+
+RewriteRule ^index\.php$ - [L]
+
+RewriteRule ^([a-zA-Z]*)/?([a-zA-Z]*)?/?([a-zA-Z0-9]*)?/?$ index.php?controleur=$1&action=$2&id=$3 [QSA,NC,L]
+
+ # END
 
 # Énoncé
 Vous venez de décrocher un contrat avec Jean Forteroche, acteur et écrivain. Il travaille actuellement sur son prochain roman, "Billet simple pour l'Alaska". Il souhaite innover et le publier par épisode en ligne sur son propre site.
