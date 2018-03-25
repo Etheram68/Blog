@@ -1,13 +1,11 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c29e424d35b47d78307aaf02605c187)](https://www.codacy.com/app/Etheram68/Blog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Etheram68/Blog&amp;utm_campaign=Badge_Grade)
-# Blog
-Modification de l'architecture en MVC Objet avec un Framework
-Modification du Design du site
-Modification du back office
-Ajout du traitement de Contact
-Modification de la page Erreur
-
-A traiter: Design à revoir plus responsive
-condenser les côdes CSS
+# Information d'installation
+Télécharger le répertoir.
+Dézipper le dossier dans votre dossier www du logiciel Wamp/Xamp
+Ouvrir le dossier Config -> dev.ini et remplacé par les information de votre base de données
+Pour la partit Installation si le site est déployer dans un dossier du nom de Blog remmplacé à racineWeb entre les \ \ par le nom du dossier.
+Si il n'y a pas de dossier et que le site est installé à la racine mettre simplement \ .
+Bonne installation du site web.
 
 # Énoncé
 Vous venez de décrocher un contrat avec Jean Forteroche, acteur et écrivain. Il travaille actuellement sur son prochain roman, "Billet simple pour l'Alaska". Il souhaite innover et le publier par épisode en ligne sur son propre site.
