@@ -1,10 +1,14 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c29e424d35b47d78307aaf02605c187)](https://www.codacy.com/app/Etheram68/Blog?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Etheram68/Blog&amp;utm_campaign=Badge_Grade)
 # Information d'installation
 Télécharger le répertoir.
+
 Dézipper le dossier dans votre dossier www du logiciel Wamp/Xamp
+
 Ouvrir le dossier Config -> dev.ini et remplacé par les information de votre base de données
+
 Pour la partit Installation si le site est déployer dans un dossier du nom de Blog remmplacé à racineWeb entre les \ \ par le nom du dossier.
 Si il n'y a pas de dossier et que le site est installé à la racine mettre simplement \ .
+
 Bonne installation du site web.
 
 # Énoncé
