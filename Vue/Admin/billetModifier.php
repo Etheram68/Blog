@@ -37,20 +37,11 @@ $this->grade = $this->nettoyer($grade);
                     <br/>
                     <div class="row">
                         <div class="col-xs-12 col-md-12 form-group">
-                            <button class="btn btn-primary pull-right btn-masquer-billet" type="submit" Onclick="return ConfirmDelete();">Modifier le billet</button>
+                            <button class="btn btn-primary pull-right btn-masquer-billet" type="submit">Modifier le billet</button>
                         </div>
                     </div>
                 </form>
-                   <script>
-    function ConfirmDelete()
-    {           
-      var x = confirm("Êtes vous sur de vouloir modifier le Billet ?");
-      if (x)
-          return true;
-      else
-        return false;
-    }
-</script>    
+                   
                 <script>
                     tinymce.init({
                         selector: '#tiny',

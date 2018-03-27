@@ -19,9 +19,8 @@ $this->grade = $this->nettoyer($grade);
                         <input name="titreBillet" placeholder="Entrez votre le titre" required>
                     </div>
                     <div class="col-xs-4 col-md-4 form-group">
-                        <label for="photoBillet">Icône du fichier (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
-                        <center><input type="file" name="photoBillet" id="photoBillet" /></center><br />
-                        
+                        <label>Illustration</label><br>
+                        <input name="photoBillet" placeholder="Photo associée">
                     </div>
                     <div class="col-xs-12 col-md-12 form-group">
                         <label>Texte</label>
