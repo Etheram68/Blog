@@ -1,15 +1,14 @@
 <?php
 
-namespace Blog\Modele_Dao;
+namespace Blog\Modele;
 
 use Blog\Framework\Modele;
-//use Blog\Models\Billets;
 
 /**
  * Fournit les services d'accès aux genres musicaux
  *
  */
-class BilletDao extends Modele
+class Billets extends Modele
 {
     const MAX_PER_PAGE = 3;
     const STATUT_HIDDEN = 'NON';

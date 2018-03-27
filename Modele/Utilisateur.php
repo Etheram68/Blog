@@ -1,12 +1,12 @@
 <?php
 
-namespace Blog\Modele_Dao;
+namespace Blog\Modele;
 
 use Blog\Framework\Modele;
 use Blog\Framework\Session;
 
 
-class UserDao extends Modele
+class Utilisateur extends Modele
 {
     /**
      * Vérifie qu'un utilisateur existe dans la BD

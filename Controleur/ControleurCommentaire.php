@@ -2,8 +2,8 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
-use Blog\Modele_Dao\BilletDao;
-use Blog\Modele_Dao\CommentaryDao;
+use Blog\Modele\Billets;
+use Blog\Modele\Commentaire;
 
 /**
  * Contrôleur des actions liées aux billets
@@ -19,7 +19,7 @@ class ControleurCommentaire extends Controleur {
      * Constructeur 
      */
     public function __construct() {
-        $this->commentaire = new CommentaryDao();
+        $this->commentaire = new Commentaire();
     }
 
     // Affiche les détails sur un billet

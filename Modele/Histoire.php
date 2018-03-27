@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Modele_Dao;
+namespace Blog\Modele;
 
 use Blog\Framework\Modele;
 
@@ -8,7 +8,7 @@ use Blog\Framework\Modele;
  * Fournit les services d'accès aux genres musicaux
  *
  */
-class HistoireDao extends Modele
+class Histoire extends Modele
 {
     public function auteur () {
         $sql = 'SELECT histoire_photo AS photo, histoire_titre AS titre, histoire_texte AS texte, histoire_citation AS citation FROM T_HISTOIRE';

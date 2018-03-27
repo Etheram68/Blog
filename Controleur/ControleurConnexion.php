@@ -3,7 +3,7 @@
 namespace Blog\Controleur;
 
 use Blog\Framework\Controleur;
-use Blog\Modele_Dao\UserDao;
+use Blog\Modele\Utilisateur;
 
 class ControleurConnexion extends Controleur
 {
@@ -11,7 +11,7 @@ class ControleurConnexion extends Controleur
 
     public function __construct()
     {
-        $this->utilisateur = new UserDao();
+        $this->utilisateur = new Utilisateur();
     }
 
     public function index()
