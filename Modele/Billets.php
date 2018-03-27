@@ -87,7 +87,7 @@ class Billets extends Modele
     {
         $sql = 'select BIL_ID as id, BIL_DATE as date,'
             . ' BIL_TITRE as titre, BIL_CONTENU as contenu, BIL_PHOTO as photo, BIL_VISIBLE as visible from T_BILLET'
-            . ' where BIL_ID= :billetID AND BIL_VISIBLE= "OUI"';
+            . ' where BIL_ID= :billetID';
         $billet = $this->executerRequete($sql, array('billetID' => $idBillet));
         if ($billet->rowCount() > 0)
             return $billet->fetch();  // Accès à la première ligne de résultat
